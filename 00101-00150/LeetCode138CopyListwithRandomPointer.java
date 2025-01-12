@@ -2,57 +2,57 @@
 package leetCodeRevisionOne;
 
 import java.util.HashMap;
+import java.util.Scanner;
 
 /*class ListNode
 {
 	int val;
-	ListNode next;
 	ListNode random;
+	ListNode next;
 	ListNode(int x)
 	{
-		this.val =x;
+		this.val=x;
+		this.random=null;
 		this.next=null;
-		this.random = null;
 	}
-	ListNode(int x, ListNode next)
+	ListNode(int x,ListNode next)
 	{
-		this.val =x;
-		this.next = next;
+		this.val=x;
+		this.next=next;
 	}
-	
 }*/
 public class LeetCode138CopyListwithRandomPointer {
 	
 	public ListNode copyRandomList(ListNode head)
 	{
-		HashMap<ListNode,ListNode> map = new HashMap<>();
-		ListNode curr = head;
-		ListNode nhead = new ListNode(-1);
+		HashMap<ListNode,ListNode> hm = new HashMap<>();
+		ListNode curr =head;
+		ListNode nhead= new ListNode(-1);
 		ListNode prev = nhead;
-		while(curr!=null)
-		{
-			ListNode node = new ListNode(curr.val);
-			prev.next = node;
-			map.put(curr, node);
-			
-			curr = curr.next;
-			prev = prev.next;
-		}
-		nhead = nhead.next;
-		ListNode c1= head;
-		ListNode c2= nhead;
-		
-		while(c1!=null)
-		{
-			c2.random = (c1.random !=null ? map.get(c1.random) :null);
-			c1 = c1.next;
-			c2 = c2.next;
-		}
-		return nhead;
+		 while(curr!=null)
+		 {
+			 ListNode node = new ListNode(curr.val);
+			 prev.next =node;
+			 hm.put(curr,node);
+			 
+			 curr = curr.next;
+			 prev = prev.next;
+		 }
+		 
+		 nhead= nhead.next;
+		 ListNode c1=head;
+		 ListNode c2=nhead;
+		 
+		 while(c1!=null)
+		 {
+			 c2.random = (c1.random !=null ? hm.get(c1.random) : null);
+			 c1 = c1.next;
+			 c2 = c2.next;
+		 }
+		 return head;
 	}
 
 	public static void main(String[] args) {
-		
 		ListNode head = new ListNode(7);
 		head.next = new ListNode(13);
 		head.next.next = new ListNode(11);
@@ -72,9 +72,6 @@ public class LeetCode138CopyListwithRandomPointer {
 			System.out.println(result.val+"->"+result.random.val);
 			result = result.next;
 		}
-		
-
-
 	}
 
 }

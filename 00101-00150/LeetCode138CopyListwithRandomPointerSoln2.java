@@ -1,7 +1,7 @@
 //https://www.youtube.com/watch?v=IGWJg9wDaF0
 package leetCodeRevisionOne;
 
-/*class ListNode
+class ListNode
 {
 	int val;
 	ListNode next;
@@ -12,7 +12,7 @@ package leetCodeRevisionOne;
 		this.next = null;
 		this.random = null;
 	}
-}*/
+}
 
 public class LeetCode138CopyListwithRandomPointerSoln2 {
 	
@@ -21,12 +21,12 @@ public class LeetCode138CopyListwithRandomPointerSoln2 {
 		ListNode curr = head;
 		while(curr!=null)
 		{
-			ListNode frow = curr.next;
+			ListNode forw = curr.next;
 			ListNode node = new ListNode(curr.val);
 			curr.next = node;
-			node.next = frow;
+			node.next = forw;
 			
-			curr = frow;
+			curr = forw;
 		}
 	}
 	
@@ -38,28 +38,25 @@ public class LeetCode138CopyListwithRandomPointerSoln2 {
 			ListNode random = curr.random;
 			if(random!=null)
 			{
-			curr.next.random  = random.next;
+				curr.next.random = random.next;
 			}
-			
-			curr = curr.next.next;
-			
+			curr = curr.next.next; 
 		}
 	}
 	
 	public static ListNode extractList(ListNode head)
 	{
 		ListNode dummy = new ListNode(-1);
-		ListNode perv = dummy;
 		ListNode curr = head;
+		ListNode prev = dummy;
 		while(curr!=null)
 		{
-			perv.next = curr.next;
+			prev.next = curr.next;
 			curr.next = curr.next.next;
 			
-			perv = perv.next;
+			prev = prev.next;
 			curr = curr.next;
 		}
-		
 		return dummy.next;
 	}
 	
